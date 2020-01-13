@@ -1,0 +1,4 @@
+Expense,mittanauha,100,Mon Jan 13 17:55:17 2020
+Expense,Dankweed,100,Mon Jan 13 17:59:35 2020
+Income,salary,5000,Mon Jan 13 18:05:12 2020
+
