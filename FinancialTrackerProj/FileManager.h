@@ -11,7 +11,7 @@
 using namespace std;
 class FileManager
 {
-	//friend ostream& operator<<(ofstream& datafile, Transaction transaction);
+	friend ostream& operator<<(ofstream& datafile, unique_ptr<Transaction>);
 	//friend istream& operator>>(ifstream& datafile, Record* record);
 
 public:
@@ -19,7 +19,7 @@ public:
 	void readFromDisk(Record* recordobj);
 	void clearDisk(Record* recordobj);
 	FileManager();
-	~FileManager();
+	~FileManager()=default;
 private: 
 	void saveTransaction(string)const;
 };

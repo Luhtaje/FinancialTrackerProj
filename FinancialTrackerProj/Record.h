@@ -16,7 +16,7 @@ private:
 
 public:
 	Record();
-	~Record();
+	~Record()=default;
 
 	vector<unique_ptr<Transaction>> record;
 	void print()const;

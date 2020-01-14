@@ -23,15 +23,17 @@ Expense::Expense(string description, int amount, string date){
 	this->date = date + '\n';
 }
 
-
+//Returns the transaction in a string type.
 string Expense::toString()const {
 	return type +','+ description + "," + to_string(amount) + "," + date;
 }
 
+//Prints data in columns.
 void Expense::print()const {
 	cout << left << setw(12) << type << left << setw(25) << description << '-' << left << setw(12) << amount << date;
 }
 
+//Get member "amount".
 int Expense::getAmount()const {
 	return -amount;
 }

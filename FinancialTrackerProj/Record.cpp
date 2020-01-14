@@ -11,11 +11,6 @@ using namespace std;
 Record::Record() {
 }
 
-Record::~Record() {
-	
-}
-
-
 //Prints all transactions in columns.
 void Record::print() const{	
 	int total =0;

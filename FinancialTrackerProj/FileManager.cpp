@@ -3,25 +3,37 @@
 #include "FileManager.h"
 
 /*
-FileManager handles saving and reading from files. 
+FileManager handles all actions with files- saving,reading and clearing.
 */
 using namespace std;
 FileManager::FileManager() {
 
 }
 
-FileManager::~FileManager() {
-
-}
-
 //Goes through the vector in temporary memory and saves transaction strings into the datafile.
 void FileManager::saveToDisk(Record* recordobj){
 	int counter = 0;
+
 	for (int i = 0; i != recordobj->record.size(); i++) {
 		//Fetches a string from Transaction object and pushes it into the datafile.
 		saveTransaction(recordobj->record[i]->toString());
 	}
 }
+
+//Saves a transaction to datafile.
+void FileManager::saveTransaction(string transaction)const {
+
+	ofstream datafile("datafile.txt", std::ios_base::app);
+	if (datafile.is_open()) {
+		datafile << transaction;
+		datafile.close();
+	}
+	else {
+		cout << "Error opening datafile." << endl;
+	}
+
+}
+
 /*
 Reads data from the disk and creates transactions in to the record.
 Record needs to be empty when reading from the disk.
@@ -40,7 +52,8 @@ void FileManager::readFromDisk(Record* recordobj) {
 	if (datafile.is_open())
 	{
 		if (recordobj->record.empty()) {
-			//Tokenize line read from the datafile.
+			//Tokenize the line read from the datafile and construct transactions.
+			//Transactions are pushed to the the record(temporary memory) after construction.
 			while (getline(datafile,datastring)){
 				stringstream stream(datastring);
 				getline(stream,type, ',');
@@ -49,7 +62,7 @@ void FileManager::readFromDisk(Record* recordobj) {
 				amount = stoi(amountstring);
 				getline(stream, date, ',');
 
-				//Construct transaction objects.
+				//Construct transaction objects based on the "type" token.
 				if (type.compare("Expense") == 0) {
 					unique_ptr<Expense> expense = make_unique<Expense>(description, amount, date);
 					recordobj->add(move(expense));
@@ -60,6 +73,7 @@ void FileManager::readFromDisk(Record* recordobj) {
 				}
 			}
 		}
+		//Prints out error msg if trying to read while having transactions in Record.
 		else {
 			cout << "Error: Record not empty. Please save recently made transactions before reading from disk" << endl;
 		}
@@ -74,19 +88,7 @@ void FileManager::clearDisk(Record* recordobj) {
 
 }
 
-//Saves a transaction to disk.
-void FileManager::saveTransaction(string transaction)const {
-
-	ofstream datafile("datafile.txt",std::ios_base::app);
-	if (datafile.is_open()) {
-		datafile << transaction;
-		datafile.close();
-	}
-	else {
-		cout << "Error opening datafile." << endl;
-	}
-	
-}
-//Cant' really find a proper place for overloading operators :s
-void operator<<(ofstream& datafile, Transaction transaction) {
+//Doesn't work, prints pointer address or just garbage.
+ostream& operator<<(ofstream& datafile, unique_ptr<Transaction> transaction) {
+	return datafile << transaction->toString();
 }

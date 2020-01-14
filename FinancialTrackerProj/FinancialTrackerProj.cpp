@@ -3,23 +3,29 @@
 #include "Expense.h"
 #include "Record.h"
 
+/*
+Jere Luhtanen 14.1.2020
+Metropolia University of Applied Sciences-Smart Systems 
+Object Oriented Programming with C++
+*/
 using namespace std;
 
 int main()
-{
+{	
+	//Reserve resources 
 	CommandHandler* commandHandler = new CommandHandler;
 	FileManager* fileManager= new FileManager;
 	Record* record = new Record;
 	string command;
 
-
+	//Takes inputs and executes actions based on the command given.
 	while (!(command.compare("exit")==0)) {
 		cin >> command;
 
-		//Had to pass managers in order to be able to use them. 
 		commandHandler->executeCommand(command,record,fileManager);
 	}
 
+	//Release resources
 	delete record;
 	delete fileManager;
 	delete commandHandler;

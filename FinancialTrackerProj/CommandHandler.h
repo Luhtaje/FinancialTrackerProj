@@ -11,10 +11,9 @@ class CommandHandler
 {
 	public:
 		CommandHandler();
-		~CommandHandler();
+		~CommandHandler()=default;
 		void executeCommand(string command,Record* record ,FileManager* fileManager) const;
 	private:
-		string command;
 		void printCommands()const;
 };
 

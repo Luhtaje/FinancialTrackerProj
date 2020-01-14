@@ -1,7 +1,7 @@
 #pragma once
 #include <iomanip>
 #include <iostream>
-
+//Derived class from transaction. Fundamental data class for the program.
 class Income : public Transaction
 {
 public:
