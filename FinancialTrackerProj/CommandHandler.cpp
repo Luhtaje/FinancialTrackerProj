@@ -1,6 +1,6 @@
 #pragma once
-#include "CommandHandler.h"
 #include <sstream>
+#include "CommandHandler.h"
 #include "Expense.h"
 #include "Income.h"
 #include "Transaction.h"
@@ -15,33 +15,33 @@ CommandHandler::CommandHandler() {;
 }
 
 //Looks for the correct command and executes it. 
-void CommandHandler::executeCommand(string command,Record* record,FileManager* fileManager) const {
+void CommandHandler::executeCommand(string command,Record& record,FileManager& fileManager) const {
 	int x = 0;
 	if (command.compare("clear") == 0) {
-		fileManager->clearDisk();
+		fileManager.clearDisk();
 		cout << "Datafile cleared." << endl;
 	}
 	else if (command.compare("save") == 0) {
-		fileManager->saveToDisk(record);
-		record->flushRecord();
+		fileManager.saveToDisk(record);
+		record.flushRecord();
 			
 		cout << "Temporary memory saved to disk. Temporary memory cleared." << endl;
 	}
 	else if (command.compare("read") == 0) {
-		fileManager->readFromDisk(record);
+		fileManager.readFromDisk(record);
 		cout << "Data read from disk." << endl;
 	}
 	else if (command.compare("add") == 0) {
-		unique_ptr<Income> income = make_unique<Income>();
-		record->add(move(income));
+		shared_ptr<Income>income(new Income());
+		record.add(move(income));
 	}
 	else if (command.compare("spend") == 0) {
 
-		unique_ptr<Expense> expense = make_unique<Expense>();
-		record->add(move(expense));
+		shared_ptr<Expense> expense = make_unique<Expense>();
+		record.add(expense);
 	}
 	else if(command.compare("print")==0) {
-		record->print();
+		record.print();
 	}
 	else if (command.compare("commands") == 0) {
 		printCommands();
@@ -50,7 +50,7 @@ void CommandHandler::executeCommand(string command,Record* record,FileManager* f
 		cout << "Exiting program...";
 	}
 	else if (command.compare("flush")==0) {
-		record->flushRecord();
+		record.flushRecord();
 		cout << "Temporary data deleted" << endl;
 	}
 	else if (command.compare("help") == 0) {

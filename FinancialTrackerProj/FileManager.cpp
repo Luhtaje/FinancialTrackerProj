@@ -11,11 +11,10 @@ FileManager::FileManager() {
 }
 
 //Goes through the vector in temporary memory and saves transaction strings into the datafile.
-void FileManager::saveToDisk(Record* recordobj) const{
+void FileManager::saveToDisk(Record& recordobj) const{
 
 	ofstream datafile("datafile.txt", std::ios_base::app);
 	if (datafile.is_open()) {
-		cout << "Datafile is open." << endl;
 		datafile << recordobj;
 	}
 	datafile.close();
@@ -25,7 +24,7 @@ void FileManager::saveToDisk(Record* recordobj) const{
 Reads data from the disk and creates transactions in to the record.
 Record needs to be empty when reading from the disk.
 */
-void FileManager::readFromDisk(Record* recordobj)const {
+void FileManager::readFromDisk(Record& recordobj)const {
 	ifstream datafile("datafile.txt");
 
 	if (datafile.is_open()) {

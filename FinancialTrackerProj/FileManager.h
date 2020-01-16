@@ -7,8 +7,8 @@ using namespace std;
 class FileManager
 {
 public:
-	void saveToDisk(Record* recordobj)const;
-	void readFromDisk(Record* recordobj)const;
+	void saveToDisk(Record& recordobj)const;
+	void readFromDisk(Record& recordobj)const;
 	void clearDisk()const;
 	
 	FileManager();

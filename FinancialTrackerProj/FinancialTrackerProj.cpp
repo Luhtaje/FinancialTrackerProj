@@ -9,25 +9,33 @@ Metropolia University of Applied Sciences-Smart Systems
 Object Oriented Programming with C++
 */
 using namespace std;
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 
 int main()
 {	
-	//Reserve resources 
-	CommandHandler* commandHandler = new CommandHandler;
-	FileManager* fileManager= new FileManager;
-	Record* record = new Record;
-	string command;
-	cout << "Setup complete. Waiting for inputs." << endl << endl;;
+	{
+		//Reserve resources 
+		FileManager* fileManager = new FileManager;
+		Record* record = new Record;
 
-	//Takes inputs and executes actions based on the command given.
-	while (!(command.compare("exit") == 0)) {
-		cin >> command;
+		CommandHandler commandHandler;
 
-		commandHandler->executeCommand(command, record, fileManager);
+		string command;
+		cout << "Setup complete. Waiting for inputs."<< endl;;
+		//Takes inputs and executes actions based on the command given.
+		
+		while (!(command.compare("exit") == 0)) {
+			cin >> command;
+
+			commandHandler.executeCommand(command, *record, *fileManager);
+		}
+		
+		//Release resources
+		delete record;
+		delete fileManager;
 	}
-	//Release resources
-	delete record;
-	delete fileManager;
-	delete commandHandler;
+	_CrtDumpMemoryLeaks();
 }
 
