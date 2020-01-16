@@ -1,9 +1,14 @@
 #pragma once
 #include "Transaction.h"
-#include <algorithm>
+#include "Expense.h"
+#include "Income.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
 #include <vector>
 #include <memory>
-#include <algorithm>
+#include <string>
 using namespace std;
 
 /*
@@ -11,7 +16,8 @@ Record holds transaction in a vector. Uses FileHandler to save and read, and tra
 */
 class Record
 {
-
+	friend ostream& operator<<(ofstream& , Record*);
+	friend ostream& operator>>(ifstream& , Record* );
 private:
 
 public:

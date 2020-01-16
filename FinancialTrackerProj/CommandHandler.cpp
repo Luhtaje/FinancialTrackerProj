@@ -18,7 +18,7 @@ CommandHandler::CommandHandler() {;
 void CommandHandler::executeCommand(string command,Record* record,FileManager* fileManager) const {
 	int x = 0;
 	if (command.compare("clear") == 0) {
-		fileManager->clearDisk(record);
+		fileManager->clearDisk();
 		cout << "Datafile cleared." << endl;
 	}
 	else if (command.compare("save") == 0) {

@@ -10,7 +10,6 @@ Transaction::Transaction() {
 	setDate();
 }
 
-
 string Transaction::toString()const {
 	string temp = description + "," + to_string(amount) + "," + date + "\n";
 	return temp;
@@ -25,7 +24,7 @@ void Transaction::setDate() {
 void Transaction::print()const {
 	cout << "printing from baseclass";
 }
-int Transaction::getAmount()const {
+double Transaction::getAmount()const {
 	return amount;
 }
 

@@ -17,14 +17,14 @@ int main()
 	FileManager* fileManager= new FileManager;
 	Record* record = new Record;
 	string command;
+	cout << "Setup complete. Waiting for inputs." << endl << endl;;
 
 	//Takes inputs and executes actions based on the command given.
-	while (!(command.compare("exit")==0)) {
+	while (!(command.compare("exit") == 0)) {
 		cin >> command;
 
-		commandHandler->executeCommand(command,record,fileManager);
+		commandHandler->executeCommand(command, record, fileManager);
 	}
-
 	//Release resources
 	delete record;
 	delete fileManager;

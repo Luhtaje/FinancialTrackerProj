@@ -11,14 +11,13 @@ class Transaction
 public:
 	Transaction();
 	~Transaction();
-	void save()const;
 	virtual string toString()const;
 	virtual void print()const;
-	virtual int getAmount() const;
+	virtual double getAmount() const;
 
 protected:
 	string description;
-	int amount;
+	double amount;
 	string date;
 	
 private:

@@ -1,6 +1,3 @@
-
-Income,Salary,100,Tue Jan 14 13:31:43 2020
-Expense,mittanauha,100,Mon Jan 13 17:55:17 2020
-Income,salary,5000,Mon Jan 13 18:05:12 2020
-Income,Salary,3000,Tue Jan 14 13:31:49 2020
-Expense,ice cream,300,Tue Jan 14 13:31:56 2020
+Income,Testtransaction,10060.000000,Thu Jan 16 13:51:27 2020
+Expense,Testtransaction,100.000000,Thu Jan 16 13:51:38 2020
+Income,Opintolaina + opintotuki,3880.600000,Thu Jan 16 13:51:47 2020
